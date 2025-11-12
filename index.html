@@ -1,1 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario de Publicaciones</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+            background: #f7f6f3;
+            padding: 40px 20px;
+            color: #37352f;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+        }
+        
+        .header {
+            padding: 32px;
+            border-bottom: 1px solid #e9e9e7;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #37352f;
+        }
+        
+        .header p {
+            font-size: 14px;
+            color: #787774;
+        }
+        
+        .legend {
+            padding: 20px 32px;
+            background: #f7f6f3;
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #37352f;
+        }
+        
+        .legend-badge {
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        
+        .star {
+            color: #f59e0b;
+            font-size: 14px;
+        }
+        
+        .tiktok {
+            background: #fff0f0;
+            color: #d44c47;
+            border: 1px solid #ffd4d4;
+        }
+        
+        .instagram {
+            background: #ffeef8;
+            color: #c9469c;
+            border: 1px solid #ffd4ee;
+        }
+        
+        .facebook {
+            background: #edf3ff;
+            color: #3b82f6;
+            border: 1px solid #d4e3ff;
+        }
+        
+        .table-wrapper {
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        
+        th {
+            background: #f7f6f3;
+            padding: 12px 12px;
+            text-align: left;
+            font-weight: 500;
+            color: #787774;
+            border-bottom: 1px solid #e9e9e7;
+            position: sticky;
+            top: 0;
+            font-size: 12px;
+        }
+        
+        th:first-child {
+            width: 110px;
+        }
+        
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #f0f0ef;
+            vertical-align: top;
+            font-size: 12px;
+        }
+        
+        td:first-child {
+            font-weight: 500;
+            color: #37352f;
+            background: #fafafa;
+            white-space: nowrap;
+        }
+        
+        tr:hover td {
+            background: #f7f6f3;
+        }
+        
+        tr:hover td:first-child {
+            background: #f0f0ef;
+        }
+        
+        .post {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            margin: 2px 0;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        
+        .empty {
+            color: #c0bfbc;
+            font-style: italic;
+        }
+        
+        .cell-content {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        
+        .note {
+            padding: 24px 32px;
+            background: #fff9e6;
+            border-top: 1px solid #e9e9e7;
+            font-size: 13px;
+            color: #787774;
+            line-height: 1.6;
+        }
+        
+        .note strong {
+            color: #37352f;
+        }
 
+        .tips {
+            padding: 24px 32px;
+            background: #f0f9ff;
+            border-top: 1px solid #e9e9e7;
+            font-size: 13px;
+            color: #787774;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📅 Calendario de Publicaciones</h1>
+            <p>Horarios óptimos para termos anime - Basado en data actualizada 2025</p>
+        </div>
+        
+        <div class="legend">
+            <div class="legend-item">
+                <span class="legend-badge tiktok">TikTok</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-badge instagram">Instagram</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-badge facebook">Facebook</span>
+            </div>
+            <div class="legend-item">
+                <span class="star">⭐</span> = Horario premium (mejor engagement)
+            </div>
+        </div>
+        
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Horario</th>
+                        <th>Lunes</th>
+                        <th>Martes</th>
+                        <th>Miércoles</th>
+                        <th>Jueves</th>
+                        <th>Viernes</th>
+                        <th>Sábado</th>
+                        <th>Domingo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>5:00 AM</td>
+                        <td><div class="cell-content"><span class="post facebook">Facebook</span></div></td>
+                        <td><span class="empty">-</span></td>
+                        <td><span class="empty">-</span></td>
+                        <td><span class="empty">-</span></td>
+                        <td><span class="empty">-</span></td>
+                        <td><span class="empty">-</span></td>
+                        <td><span class="empty">-</span></td>
+                    </tr>
+                    <tr>
+                        <td>6:00 AM</td>
+                        <td><span class="empty">-</span></td>
+                        <td><span class="empty">-</span></td>
+                        <td><div class="cell-content"><span class="post facebook">Facebook ⭐</span></div></td>
+                        <td><div class="cell-content"><span class="post facebook">Facebook ⭐⭐</span></div></td>
+                        <td><div class="cell-content"><span class="post facebook">Facebook</span></div></td>
+                        <td><div class="cell-content"><span class="post facebook">Facebook</span></div></td>
+                        <td><span class="empty">-</span></td>
+                    </tr>
+                    <tr>
+                        <td>8:00 AM</td>
+                        <td><span class="empty">-</span></td>
+                        <td><div class="cell-content"><span class="post instagram">Instagram</span></div></td>
+                        <td><span class="empty">-</span></td>
+                        <td><span class="empty">-</span></td>
+                        <td><div class="cell-content"><span class="post instagram">Instagram ⭐⭐</span></div></td>
+                        <td><span class="empty">-</span></td>
+                        <td><div class="cell-content"><span class="post facebook">Facebook</span></div></td>
+                    </tr>
+                    <tr>
+                        <td>9:00 AM</td>
+                        <td><span class="empty">-</span></td>
+                        <td><span class="empty">-</span></td>
+                        <td><div class="cell-content"><span class="post facebook">Facebook</span></div></td>
+                        <td><span class="empty">-</span></td>
+                        <td><span class="empty">-</span></td>
+                        <td><span class="empty">-</span></td>
+                        <td><span class="empty">-</span></td>
+                    </tr>
+                    <tr>
+                        <td>11:00 AM</td>
+                        <td><span class="empty">-</span></td>
+                        <td><span class="empty">-</span></td>
+                        <td><div class="cell-content"><span class="post facebook">Facebook</span></div></td>
+                        <td><span class="empty">-</span></td>
+                        <td><span class="empty">-</span></td>
+                        <td><div class="cell-content"><span class="post tiktok">TikTok ⭐⭐</span></div></td>
+                        <td><span class="empty">-</span></td>
+                    </tr>
+                    <tr>
+                        <td>12:00 PM</td>
+                        <td><span class="empty">-</span></td>
+                        <td><div class="cell-content"><span class="post tiktok">TikTok ⭐⭐</span></div></td>
+                        <td><div class="cell-content"><span class="post tiktok">TikTok</span></div></td>
+                        <td><span class="empty">-</span></td>
+                        <td><span class="empty">-</span></td>
+                        <td><span class="empty">-</span></td>
+                        <td><div class="cell-content"><span class="post tiktok">TikTok</span></div></td>
+                    </tr>
+                    <tr>
+                        <td>2:00 PM</td>
+                        <td><div class="cell-content"><span class="post instagram">Instagram</span></div></td>
+                        <td><span class="empty">-</span></td>
+                        <td><div class="cell-content"><span class="post instagram">Instagram</span></div></td>
+                        <td><span class="empty">-</span></td>
+                        <td><span class="empty">-</span></td>
+                        <td><span class="empty">-</span></td>
+                        <td><div class="cell-content"><span class="post tiktok">TikTok</span></div></td>
+                    </tr>
+                    <tr>
+                        <td>3:00 PM</td>
+                        <td><div class="cell-content"><span class="post instagram">Instagram ⭐</span></div></td>
+                        <td><div class="cell-content"><span class="post instagram">Instagram</span><span class="post facebook">Facebook ⭐⭐</span></div></td>
+                        <td><span class="empty">-</span></td>
+                        <td><div class="cell-content"><span class="post tiktok">TikTok ⭐⭐</span></div></td>
+                        <td><span class="empty">-</span></td>
+                        <td><span class="empty">-</span></td>
+                        <td><span class="empty">-</span></td>
+                    </tr>
+                    <tr>
+                        <td>4:00 PM</td>
+                        <td><span class="empty">-</span></td>
+                        <td><div class="cell-content"><span class="post tiktok">TikTok ⭐⭐</span></div></td>
+                        <td><span class="empty">-</span></td>
+                        <td><span class="empty">-</span></td>
+                        <td><span class="empty">-</span></td>
+                        <td><span class="empty">-</span></td>
+                        <td><span class="empty">-</span></td>
+                    </tr>
+                    <tr>
+                        <td>6:00 PM</td>
+                        <td><div class="cell-content"><span class="post tiktok">TikTok ⭐⭐⭐</span></div></td>
+                        <td><div class="cell-content"><span class="post tiktok">TikTok ⭐⭐</span></div></td>
+                        <td><span class="empty">-</span></td>
+                        <td><span class="empty">-</span></td>
+                        <td><span class="empty">-</span></td>
+                        <td><span class="empty">-</span></td>
+                        <td><span class="empty">-</span></td>
+                    </tr>
+                    <tr>
+                        <td>7:00 PM</td>
+                        <td><div class="cell-content"><span class="post instagram">Instagram</span></div></td>
+                        <td><div class="cell-content"><span class="post instagram">Instagram</span></div></td>
+                        <td><span class="empty">-</span></td>
+                        <td><div class="cell-content"><span class="post instagram">Instagram ⭐</span></div></td>
+                        <td><span class="empty">-</span></td>
+                        <td><span class="empty">-</span></td>
+                        <td><span class="empty">-</span></td>
+                    </tr>
+                    <tr>
+                        <td>8:00 PM</td>
+                        <td><span class="empty">-</span></td>
+                        <td><span class="empty">-</span></td>
+                        <td><div class="cell-content"><span class="post instagram">Instagram ⭐⭐⭐</span></div></td>
+                        <td><span class="empty">-</span></td>
+                        <td><span class="empty">-</span></td>
+                        <td><span class="empty">-</span></td>
+                        <td><span class="empty">-</span></td>
+                    </tr>
+                    <tr>
+                        <td>9:00 PM</td>
+                        <td><div class="cell-content"><span class="post instagram">Instagram</span></div></td>
+                        <td><span class="empty">-</span></td>
+                        <td><span class="empty">-</span></td>
+                        <td><span class="empty">-</span></td>
+                        <td><span class="empty">-</span></td>
+                        <td><span class="empty">-</span></td>
+                        <td><span class="empty">-</span></td>
+                    </tr>
+                    <tr>
+                        <td>10:00 PM</td>
+                        <td><div class="cell-content"><span class="post tiktok">TikTok ⭐⭐⭐</span></div></td>
+                        <td><span class="empty">-</span></td>
+                        <td><span class="empty">-</span></td>
+                        <td><span class="empty">-</span></td>
+                        <td><div class="cell-content"><span class="post tiktok">TikTok ⭐</span></div></td>
+                        <td><div class="cell-content"><span class="post tiktok">TikTok ⭐⭐</span></div></td>
+                        <td><span class="empty">-</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="note">
+            <strong>📊 Resumen de mejores horarios por plataforma:</strong><br><br>
+            <strong>TikTok:</strong><br>
+            • Lunes: 6:00 PM y 10:00 PM ⭐⭐⭐ (MEJOR DÍA)<br>
+            • Martes: 12:00 PM - 4:00 PM y 6:00 PM ⭐⭐<br>
+            • Miércoles: 12:00 PM (mediodía)<br>
+            • Jueves: 3:00 PM ⭐⭐<br>
+            • Viernes: 10:00 PM ⭐<br>
+            • Sábado: 10:00 PM - 12:00 AM y 11:00 AM ⭐⭐<br>
+            • Domingo: 12:00 PM - 2:00 PM<br><br>
+            
+            <strong>Instagram:</strong><br>
+            • Mejor horario general: 7:00 PM - 9:00 PM ⭐ (HORA ÓPTIMA: 8:00 PM)<br>
+            • Lunes: 3:00 PM - 9:00 PM ⭐<br>
+            • Martes: 5:00 AM - 8:00 AM y 3:00 PM - 7:00 PM<br>
+            • Miércoles: 2:00 PM y 8:00 PM ⭐⭐⭐ (MEJOR DÍA)<br>
+            • Jueves: 5:00 PM - 7:00 PM ⭐<br>
+            • Viernes: 8:00 PM ⭐⭐<br>
+            • Franja 2:00 PM también efectiva cualquier día<br><br>
+            
+            <strong>Facebook:</strong><br>
+            • Martes: 3:00 PM ⭐⭐ (MEJOR DÍA)<br>
+            • Miércoles: 6:00 AM o 9:00 AM - 11:00 AM ⭐<br>
+            • Jueves: 6:00 AM ⭐⭐ (MEJOR DÍA GENERAL)<br>
+            • Viernes: 6:00 AM<br>
+            • Sábado: 6:00 AM<br>
+            • Domingo: 8:00 AM (PEOR día - evitar si es posible)<br>
+            • Lunes: 5:00 PM
+        </div>
+
+        <div class="tips">
+            <strong>💡 Tips específicos para tu negocio de termos anime:</strong><br>
+            • <strong>Reels en Instagram:</strong> Funcionan mejor por las tardes de ocio cuando la gente está más dispuesta a consumir videos<br>
+            • <strong>Stories:</strong> Mejores en mañanas y últimas horas de la tarde<br>
+            • <strong>TikTok:</strong> Entre 6:00 PM y 10:00 PM cuando los usuarios están más disponibles después del trabajo<br>
+            • <strong>Contenido sugerido:</strong> Videos cortos del proceso de grabado láser, unboxing, comparativas antes/después, nuevos diseños de anime trending
+        </div>
+    </div>
+</body>
+</html>
